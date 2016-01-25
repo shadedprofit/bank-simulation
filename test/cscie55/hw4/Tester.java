@@ -6,6 +6,7 @@ import cscie55.hw4.bank.Bank;
 import cscie55.hw4.bank.BankImpl;
 import cscie55.hw4.bank.DuplicateAccountException;
 import cscie55.hw4.bank.InsufficientFundsException;
+import cscie55.hw4.bank.IllegalArgumentException;
 import org.junit.Test;
 
 import java.util.Random;
@@ -194,7 +195,11 @@ public class Tester
         Bank bank = new BankImpl();
         for (int id = 0; id < ACCOUNTS; id++) {
             Account account = new AccountImpl(id);
-            account.deposit(INITIAL_BALANCE);
+            try {
+                account.deposit(INITIAL_BALANCE);
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
             bank.addAccount(account);
         }
         assert bank.totalBalances() == ACCOUNTS * INITIAL_BALANCE;
