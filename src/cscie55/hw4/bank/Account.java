@@ -4,6 +4,6 @@ public interface Account
 {
     int id();
     long balance();
-    void deposit(long amount);
-    void withdraw(long amount) throws InsufficientFundsException;
+    void deposit(long amount) throws IllegalArgumentException;
+    void withdraw(long amount) throws InsufficientFundsException, IllegalArgumentException;
 }
