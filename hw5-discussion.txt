@@ -1,0 +1,24 @@
+Edgar Pabon
+CSCI E-55
+04/10/2016
+Hw5 Discussion
+
+As the tests indicate, there is quite a difference in the performance between
+executing the command inside the monitor versus executing it outside of the monitor.
+Inside the monitor, 0.75 transactions were executed every millisecond compared to 
+3.4 transactions being executed when done outside the monitor.
+
+In a real world scenerio, this would have a dramatic effect when millions of transactions
+would need to be performed every second.  The question, of course, is what caused such
+a drastic difference in performance.  Basically, when the command is executed inside the 
+monitor, we place a lock on the command queue.  This means that while that one command
+is being executed, no other commands can be loaded onto the queue, and no other commands can
+be pulled off the queue and executed by another thread while the original request is 
+still being processed.  The effect is that every transaction is now blocking the execution of
+other transactions.  
+
+Conversely, when transactions are processed outside of a lock, multiple transactions can be 
+processed concurrently as long as threads are available to execute the commands.  This
+effectively eliminates the bottleneck.  It must be noted that there is no danger of accounts
+becoming out of sync here because individual accounts are already placed into a lock when
+transactions are being executed for that account.

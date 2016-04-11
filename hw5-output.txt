@@ -1,0 +1,7 @@
+OK testSetup: 58ms
+OK testCorrectness: 2s 855ms
+OK measurePerformanceOfCommandInsideAndOutsideMonitor: 32s 85ms
+
+Command INSIDE monitor:  0.759119 txns/msec
+Command OUTSIDE monitor: 3.413233 txns/msec
+
